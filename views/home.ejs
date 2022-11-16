@@ -5,11 +5,18 @@
 <p><%= homeStartingContent %></p>
 
 <% posts.forEach((post) => { %>
-  <% let url = "/posts/" + post.title %>
-  <h1><%= post.title %></h1>
-  <p><%= post.content.substring(0, 99) + "..." %>
-  <a href= "<%= url %>">Read More</a>
-  </p>
+
+  <% let url = "/posts/" + post._id %>
+  <h1><%= post.postTitle %></h1>
+
+  <% if(post.postBody.length > 99) { %>
+    <p><%= post.postBody.substring(0, 99) + "..." %>
+      <a href= "<%= url %>">Read More</a>
+    </p>
+
+  <% } else { %>
+    <p><%= post.postBody %></p>
+  <% } %>
 
 <% }); %>
 
