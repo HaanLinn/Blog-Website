@@ -7,17 +7,19 @@
 <% posts.forEach((post) => { %>
 
   <% let url = "/posts/" + post._id %>
+  <% let editUrl = "/posts/edit/" + post._id %>
+
   <h1><%= post.postTitle %></h1>
 
   <% if(post.postBody.length > 99) { %>
     <p><%= post.postBody.substring(0, 99) + "..." %>
-      <a href= "<%= url %>">Read More</a>
     </p>
-
   <% } else { %>
     <p><%= post.postBody %></p>
   <% } %>
-
+  <a href= "<%= url %>">Read More</a>
+  <a href="<%= editUrl %>">Edit</a>
+  <a href="#">Delete</a>
 <% }); %>
 
 <%- include("partials/footer.ejs") %>

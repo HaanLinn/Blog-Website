@@ -1,0 +1,25 @@
+
+<%- include("partials/header.ejs") %>
+
+<div>
+  <h1>Compose</h1>
+
+  <% let url = "/posts/edit/" + postID %>
+
+  <form action="<%= url %>" method="post">
+    <div class="form-group">
+      <!-- Post Title -->
+      <label for="postTitle">Title</label>
+      <input class="form-control" id="postTitle" type="text" name="postTitle" value="<%= postTitle%>" required>
+
+      <!-- Post Body -->
+      <label for="postBody">Post</label>
+      <textarea class="form-control" type="text" name="postBody" id="postBody" rows="5" cols="30" required><%= postBody%></textarea>
+    </div>
+
+    <button class="btn btn-primary" type="submit" name="button">Save</button>
+  </form>
+
+</div>
+
+<%- include("partials/footer.ejs") %>

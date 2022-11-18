@@ -81,6 +81,14 @@ app.get("/posts/:postID", (req, res) => {
 
 });
 
+app.get("/posts/edit/:postID", (req, res) => {
+  Blog.findOne({_id: req.params.postID}, (err, post) => {
+    if(!err) {
+      res.render("editPost", {postID: req.params.postID, postTitle: post.postTitle, postBody: post.postBody});
+    }
+  })
+});
+
 app.post("/compose", (req, res) => {
   const post = new Blog({
     postTitle: req.body.postTitle,
@@ -92,7 +100,22 @@ app.post("/compose", (req, res) => {
   res.redirect("/");
 });
 
+app.post("/posts/edit/:postID", (req, res) => {
 
+  Blog.updateOne(
+    {_id: req.params.postID},
+    {
+      postTitle: req.body.postTitle,
+      postBody: req.body.postBody
+    },
+    (err, post) => {
+      if(!err) {
+        res.redirect("/");
+      }
+    }
+  );
+
+});
 
 
 
